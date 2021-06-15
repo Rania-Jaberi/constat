@@ -7,6 +7,7 @@ import com.constat.pfe.entities.Assure;
 
 
 
+
 @Repository
 public interface AssureRepository extends JpaRepository<Assure, Long> {
 

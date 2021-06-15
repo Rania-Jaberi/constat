@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.constat.pfe.entities.Assure;
 import com.constat.pfe.entities.Prestataire;
 import com.constat.pfe.repository.PrestataireRepository;
 

@@ -1,9 +1,11 @@
 package com.constat.pfe.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,12 +14,14 @@ public class Assurance {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	private String nomAssurance;
-	
-	private String adresse;
-	
 
+	private String nomAssurance;
+
+	private String adresse;
+
+	
+	  @OneToOne(mappedBy = "assurance",cascade = {CascadeType.ALL})
+	private Assure assure;
 
 	public long getId() {
 		return id;
@@ -43,18 +47,14 @@ public class Assurance {
 		this.adresse = adresse;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Assurance [id=" + id + ", nomAssurance=" + nomAssurance + ", adresse=" + adresse
-				+ "]";
+		return "Assurance [id=" + id + ", nomAssurance=" + nomAssurance + ", adresse=" + adresse + "]";
 	}
 
 	public Assurance() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }
-	

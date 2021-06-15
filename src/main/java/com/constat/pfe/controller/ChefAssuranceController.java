@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.constat.pfe.entities.Assure;
 import com.constat.pfe.entities.ChefAssurance;
 import com.constat.pfe.repository.ChefAssuranceRepository;
-
-
 
 @CrossOrigin("*")
 
@@ -27,32 +24,30 @@ import com.constat.pfe.repository.ChefAssuranceRepository;
 public class ChefAssuranceController {
 	@Autowired
 	private ChefAssuranceRepository chefassuranceRepository;
-	
-	
+
 	@GetMapping("/chefassurances")
 	public List<ChefAssurance> getAllChefAssurances() {
 		return chefassuranceRepository.findAll();
 	}
-	
+
 	@GetMapping("/chefassurance/{id}")
 	public ChefAssurance getChefAssurance(@PathVariable("id") Long id) {
 
 		return chefassuranceRepository.findById(id).get();
 
 	}
-	
+
 	@PostMapping("/enregistrer")
 	public ChefAssurance addChefAssurance(@RequestBody ChefAssurance chefassurance) {
 
 		return chefassuranceRepository.save(chefassurance);
 	}
-	
+
 	@DeleteMapping("/supprimer/{id}")
 	public void deleteChefAssurance(@PathVariable("id") Long id) {
 		chefassuranceRepository.deleteById(id);
 	}
-	
-	
+
 	@PutMapping("/modifier/{id}")
 	public ChefAssurance editChefAssurance(@PathVariable("id") long id, @RequestBody ChefAssurance chefassurance) {
 		Optional<ChefAssurance> chefassuranceById = chefassuranceRepository.findById(id);
@@ -69,5 +64,5 @@ public class ChefAssuranceController {
 			return null;
 		}
 	}
-	
+
 }

@@ -1,27 +1,32 @@
 package com.constat.pfe.entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "Voiture")
+
 public class Voiture {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String marque;
-	
+
 	private String numeroImmatriculation;
-	
+
 	private String couleur;
-	
+
 	private String numeroPermis;
 
+	 @ManyToOne
+	 private Assure role;
 	public long getId() {
 		return id;
 	}
@@ -72,4 +77,7 @@ public class Voiture {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+	
 }

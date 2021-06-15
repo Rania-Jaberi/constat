@@ -17,27 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.constat.pfe.entities.Assurance;
 import com.constat.pfe.repository.AssuranceRepository;
 
-
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/assurance")
 public class AssuranceController {
 	@Autowired
 	private AssuranceRepository assuranceRepository;
-	
+
 	@GetMapping("/assurances")
 	public List<Assurance> getAllAssurances() {
 		return assuranceRepository.findAll();
 	}
-	
+
 	@GetMapping("/assurance/{id}")
 	public Assurance getAssurance(@PathVariable("id") Long id) {
 
 		return assuranceRepository.findById(id).get();
 
 	}
-	
 
 	@PostMapping("/enregistrer")
 	public Assurance addAssurance(@RequestBody Assurance assurance) {
@@ -49,7 +46,7 @@ public class AssuranceController {
 	public void deleteAssurance(@PathVariable("id") Long id) {
 		assuranceRepository.deleteById(id);
 	}
-	
+
 	@PutMapping("/modifier/{id}")
 	public Assurance editAssurance(@PathVariable("id") long id, @RequestBody Assurance assurance) {
 		Optional<Assurance> assuranceById = assuranceRepository.findById(id);
@@ -57,9 +54,9 @@ public class AssuranceController {
 			Assurance assuranceUpdate = assuranceById.get();
 //			Assure assureToUpdate = new Assure() ; 
 			assuranceUpdate.setNomAssurance(assurance.getNomAssurance());
-			//assureUpdate.setMotDePasse(assure.getMotDePasse());
-			//assureUpdate.setTelephone(assure.getTelephone());
-			//assureUpdate.setAdresse(assure.getAdresse());
+			// assureUpdate.setMotDePasse(assure.getMotDePasse());
+			// assureUpdate.setTelephone(assure.getTelephone());
+			// assureUpdate.setAdresse(assure.getAdresse());
 			assuranceRepository.save(assuranceUpdate);
 			return assuranceUpdate;
 		} else {

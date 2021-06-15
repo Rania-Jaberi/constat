@@ -23,56 +23,55 @@ import com.constat.pfe.repository.ExpertRepository;
 
 
 @CrossOrigin("*")
-
 @RestController
 @RequestMapping("/expert")
 public class ExpertController {
-	@Autowired
-	private ExpertRepository expertRepository;
-
-	@GetMapping("/experts")
-	public List<Expert> getAllExperts() {
-		return expertRepository.findAll();
-	}
-	
-	
-	@GetMapping("/expert/{id}")
-	public Expert getExpert(@PathVariable("id") Long id) {
-		try {
-			return expertRepository.findById(id).get();
-		} catch (Exception e) {
-
-		}
-		return null;
-	}
-	
-	@PostMapping("/enregistrer")
-	public Expert addExpert(@RequestBody Expert expert) {
-
-		return expertRepository.save(expert);
-	}
-	
-	
-	@PutMapping("/modifier/{id}")
-	public Expert editExpert(@PathVariable("id") long id, @RequestBody Expert expert) {
-		Optional<Expert> expertById = expertRepository.findById(id);
-		if (expertById.isPresent()) {
-			Expert expertUpdate = expertById.get();
-//			Assure assureToUpdate = new Assure() ; 
-			expertUpdate.setNom(expert.getNom());
-			expertUpdate.setMotDePasse(expert.getMotDePasse());
-			expertUpdate.setTelephone(expert.getTelephone());
-			expertUpdate.setAdresse(expert.getAdresse());
-			expertRepository.save(expertUpdate);
-			return expertUpdate;
-		} else {
-			return null;
-		}
-	}
-	
-	@DeleteMapping("/supprimer/{id}")
-	public void deleteExpert(@PathVariable("id") Long id) {
-		expertRepository.deleteById(id);
-	}
+//	@Autowired
+//	private ExpertRepository expertRepository;
+//
+//	@GetMapping("/experts")
+//	public List<Expert> getAllExperts() {
+//		return expertRepository.findAll();
+//	}
+//	
+//	
+//	@GetMapping("/expert/{id}")
+//	public Expert getExpert(@PathVariable("id") Long id) {
+//		try {
+//			return expertRepository.findById(id).get();
+//		} catch (Exception e) {
+//
+//		}
+//		return null;
+//	}
+//	
+//	@PostMapping("/enregistrer")
+//	public Expert addExpert(@RequestBody Expert expert) {
+//
+//		return expertRepository.save(expert);
+//	}
+//	
+//	
+//	@PutMapping("/modifier/{id}")
+//	public Expert editExpert(@PathVariable("id") long id, @RequestBody Expert expert) {
+//		Optional<Expert> expertById = expertRepository.findById(id);
+//		if (expertById.isPresent()) {
+//			Expert expertUpdate = expertById.get();
+////			Assure assureToUpdate = new Assure() ; 
+//			expertUpdate.setNom(expert.getNom());
+//			expertUpdate.setMotDePasse(expert.getMotDePasse());
+//			expertUpdate.setTelephone(expert.getTelephone());
+//			expertUpdate.setAdresse(expert.getAdresse());
+//			expertRepository.save(expertUpdate);
+//			return expertUpdate;
+//		} else {
+//			return null;
+//		}
+//	}
+//	
+//	@DeleteMapping("/supprimer/{id}")
+//	public void deleteExpert(@PathVariable("id") Long id) {
+//		expertRepository.deleteById(id);
+//	}
 
 	}

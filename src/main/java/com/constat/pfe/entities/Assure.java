@@ -1,182 +1,55 @@
 package com.constat.pfe.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "Assure")
-public class Assure {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	
-	
-	
-	private String nom;
-	
-	private String prenom;
-	
-    private String adresse;
-    
-    private String dateDeNaissance;
-    
-    private String numeroCin;
-    
-    private String telephone;
-    
-    private String Profession;
-    
-    private String nomUtilisateur;
-    
-    private String motDePasse;
-    
-	private String numContratAssurance;
+@DiscriminatorValue("Assure")
+public class Assure extends Utilisateur {
 
-	public String getNumContratAssurance() {
-		return numContratAssurance;
+	@OneToMany(targetEntity = Voiture.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id")
+	private List<Voiture> users;
+
+	public List<Voiture> getUsers() {
+		return users;
 	}
 
+	@OneToOne(cascade = { CascadeType.ALL })
+	private Assurance assurance;
 
-
-	public void setNumContratAssurance(String numContratAssurance) {
-		this.numContratAssurance = numContratAssurance;
+	public Assurance getAssurance() {
+		return assurance;
 	}
 
-
-
-	
-
-	
-
-	public Assure() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setAssurance(Assurance assurance) {
+		this.assurance = assurance;
 	}
 
-
+	public void setUsers(List<Voiture> users) {
+		this.users = users;
+	}
 
 	@Override
 	public String toString() {
-		return "Assure [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse
-				+ ", dateDeNaissance=" + dateDeNaissance + ", numeroCin=" + numeroCin + ", telephone=" + telephone
-				+ ", Profession=" + Profession + ", nomUtilisateur=" + nomUtilisateur + ", motDePasse=" + motDePasse
-				+ ", numContratAssurance=" + numContratAssurance + "]";
+		return "Assure [users=" + users + ", assurance=" + assurance + ", getPrenom()=" + getPrenom()
+				+ ", getNumeroCin()=" + getNumeroCin() + ", getDateDeNaissance()=" + getDateDeNaissance()
+				+ ", getProfession()=" + getProfession() + ", getId()=" + getId() + ", getNom()=" + getNom()
+				+ ", getAdresse()=" + getAdresse() + ", getNaissance()=" + getNaissance() + ", getTelephone()="
+				+ getTelephone() + ", getNomUtilisateur()=" + getNomUtilisateur() + ", getMotDePasse()="
+				+ getMotDePasse() + "]";
 	}
 
 
+//	 @OneToOne(fetch = FetchType.LAZY,
+//	            cascade =  CascadeType.ALL,
+//	            mappedBy = "assure")
+//	private Assurance assurance ; 
 
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-
-
-	public String getNumeroCin() {
-		return numeroCin;
-	}
-
-
-
-	public void setNumeroCin(String numeroCin) {
-		this.numeroCin = numeroCin;
-	}
-
-
-
-	public String getDateDeNaissance() {
-		return dateDeNaissance;
-	}
-
-
-
-	
-
-
-
-	public String getProfession() {
-		return Profession;
-	}
-
-
-
-	public void setProfession(String profession) {
-		this.Profession = profession;
-	}
-
-
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	public String getNaissance() {
-		return dateDeNaissance;
-	}
-
-	public void setDateDeNaissance(String dateDeNaissance) {
-		this.dateDeNaissance = dateDeNaissance;
-	}
-
-	
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	
-
-	public String getNomUtilisateur() {
-		return nomUtilisateur;
-	}
-
-	public void setNomUtilisateur(String nomUtilisateur) {
-		this.nomUtilisateur = nomUtilisateur;
-	}
-
-	public String getMotDePasse() {
-		return motDePasse;
-	}
-
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
-	}
-    
-    
-    
 }
